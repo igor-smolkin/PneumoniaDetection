@@ -1,4 +1,4 @@
-# Pneumonia detection using CNN
+# Pneumonia detection using CNN and transfer-learning
 
 The idea for our network was to solve the medical problem of detecting pneumonia, which is a dangerous disease. The detection of this lung disease is based on an existing dataset which organized into 3 folders (train, test, val) and contains subfolders for each image category (Pneumonia/Normal). There are 5,863 X-Ray images (JPEG) and 2 categories (Pneumonia/Normal).
 
