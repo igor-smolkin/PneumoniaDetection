@@ -23,16 +23,26 @@ With the help of transfer learning, we will be able to adapt the pre-trained mod
 
 
 2. Loading required libraries
-@import "main.py" {line_begin=0 line_end=7}
-
+```bash
+import tensorflow as tf
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Flatten, Dropout
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.optimizers import Adam
+import matplotlib.pyplot as plt
+```
 3. Loading a pre-trained VGG16 model without the last layers. Let's set a fixed image size of 224x224 for the architecture, as well as image depth, which means working with RGB images.
-
-@import "main.py" {line_begin=8 line_end=10}
+```bash
+base_model = VGG16(weights='imagenet', include_top=False,
+                   input_shape=(224, 224, 3))
+```
 
 4. Freezing Pretrained Model Weights
-
-@import "main.py" {line_begin=10 line_end=12}
-
+```bash
+for layer in base_model.layers:
+    layer.trainable = False
+```
 5. In the next listing, we will announce the addition of new layers, such as:
 
 base_model.output – represents the output tensor of the model VGG16, on the basis of which the sequence is built additional layers to create a model.
