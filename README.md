@@ -54,11 +54,19 @@ Dense – performs the operation of transforming input features 'x' into output 
 
 Dropout – regularization method that helps deal with model overfitting.
 
-@import "main.py" {line_begin=12 line_end=17}
+```bash
+x = base_model.output
+x = Flatten()(x)
+x = Dense(128, activation='relu')(x)
+x = Dropout(0.2)(x)  # Добавляем слой Dropout
+predictions = Dense(2, activation='softmax')(x)
+```
 
 6. Create our model
 
-@import "main.py" {line_begin=17 line_end=18}
+```bash
+model = Model(inputs=base_model.input, outputs=predictions)
+```
 
 7. Let's compile our model using metrics such as:
 
@@ -68,4 +76,8 @@ The Adam (Adaptive Moment Estimation) optimizer is a stochastic gradient descent
 
 Accuracy is the ratio of the number of correct predictions to the total number of predictions.
 
-@import "main.py" {line_begin=18 line_end=21}
+```bash
+model.compile(optimizer=Adam(), loss='categorical_crossentropy',
+              metrics=['accuracy'])
+model.summary()
+```
