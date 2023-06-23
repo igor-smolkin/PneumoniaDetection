@@ -19,8 +19,7 @@ With the help of transfer learning, we will be able to adapt the pre-trained mod
 
 ## Implementation stages
 
-1. Loading the previously presented dataset from this <a href = "https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia"> link </a>
-
+1. Loading the previously presented dataset from this <a href = "https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia"> link </a> or from my directory
 
 2. Loading required libraries
 ```bash
@@ -81,3 +80,25 @@ model.compile(optimizer=Adam(), loss='categorical_crossentropy',
               metrics=['accuracy'])
 model.summary()
 ```
+
+8. Creation of data generators with augmentation to extend the existing data set. Consider some metrics for creating additional features
+
+− Rescale. The metric measures the percentage change in scale for each object in the image and calculates the average value of the absolute scaling error.
+
+− Shear_range. Specifies the maximum angle of rotation images in degrees at which stretching occurs images along one dimension and compression along another measurements.
+
+− Zoom_range. Specifies the maximum zoom that can be applied during augmentation.
+
+− Horizontal_flip. Allows you to reflect the image horizontally, which can help the model learn more varied data.
+
+```bash
+train_datagen = ImageDataGenerator(
+    rescale=1. / 255,
+    shear_range=0.2,
+    zoom_range=0.2,
+horizontal_flip = True
+)
+test_datagen = ImageDataGenerator(rescale=1. / 255)
+```
+
+9. 
