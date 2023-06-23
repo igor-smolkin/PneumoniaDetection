@@ -150,4 +150,5 @@ plt.show()
 model.save('model.h5')
 ```
 
+## Results
 After training our model, the average accuracy on the training set was 95%, and on the test set it was 89%. Based on this, we can conclude that the resulting model has not been retrained, since the accuracy outside the training sample does not deviate significantly from the accuracy inside it. Given the complexity of the task and the possibility of noise or ambiguity in the data, we can assume that a positive result has been obtained.
