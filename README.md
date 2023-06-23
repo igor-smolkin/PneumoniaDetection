@@ -21,3 +21,41 @@ With the help of transfer learning, we will be able to adapt the pre-trained mod
 
 1. Loading the previously presented dataset from this <a href = "https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia"> link </a>
 
+
+2. Loading required libraries
+@import "main.py" {line_begin=0 line_end=7}
+
+3. Loading a pre-trained VGG16 model without the last layers. Let's set a fixed image size of 224x224 for the architecture, as well as image depth, which means working with RGB images.
+
+@import "main.py" {line_begin=8 line_end=10}
+
+4. Freezing Pretrained Model Weights
+
+@import "main.py" {line_begin=10 line_end=12}
+
+5. In the next listing, we will announce the addition of new layers, such as:
+
+base_model.output – represents the output tensor of the model VGG16, on the basis of which the sequence is built additional layers to create a model.
+
+x = Flatten()(x) – transforms the output from the previous
+layer x into a one-dimensional vector and assigns the result to a variable x, which is then used to add further layers to the model.
+
+Dense – performs the operation of transforming input features 'x' into output features using a fully connected layer with 128 neurons and the ReLU activation function.
+
+Dropout – regularization method that helps deal with model overfitting.
+
+@import "main.py" {line_begin=12 line_end=17}
+
+6. Create our model
+
+@import "main.py" {line_begin=17 line_end=18}
+
+7. Let's compile our model using metrics such as:
+
+Cross entropy is a metric for evaluating the discrepancy between two probability distributions;
+
+The Adam (Adaptive Moment Estimation) optimizer is a stochastic gradient descent optimization algorithm that is used to update the neural network weights during training.
+
+Accuracy is the ratio of the number of correct predictions to the total number of predictions.
+
+@import "main.py" {line_begin=18 line_end=21}
