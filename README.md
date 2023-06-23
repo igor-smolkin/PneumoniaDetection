@@ -101,4 +101,51 @@ horizontal_flip = True
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 ```
 
-9. 
+9. Loading data and augmenting the training set:
+
+```bash
+train_generator = train_datagen.flow_from_directory(
+    'chest_xray/train',
+    target_size=(224, 224),
+    batch_size=32,
+    class_mode='categorical'
+)
+```
+
+10. Loading test sample data:
+
+```bash
+test_generator = test_datagen.flow_from_directory(
+    'chest_xray/test',
+    target_size=(224, 224),
+    batch_size=32,
+    class_mode='categorical'
+)
+```
+
+
+11. Start training our model
+
+```bash
+history = model.fit(
+    train_generator,
+    steps_per_epoch=len(train_generator),
+    epochs=5,
+    validation_data=test_generator,
+    validation_steps=len(test_generator)
+)
+```
+
+12. In conclusion, we will display accuracy graphs and save the resulting model for further use.
+
+```bash
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Точность модели')
+plt.ylabel('Точность')
+plt.xlabel('Эпоха')
+plt.legend(['Train', 'Test'], loc='upper left')
+plt.show()
+
+model.save('model.h5')
+```
